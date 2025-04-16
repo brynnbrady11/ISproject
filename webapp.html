@@ -13,6 +13,8 @@
       padding: 50px;
       margin: 0;
       overflow-x: hidden;
+      overflow-y: hidden;
+      position: relative;
     }
 
     h1 {
@@ -74,6 +76,38 @@
         opacity: 0;
       }
     }
+
+    .raindrop {
+      position: absolute;
+      width: 2px;
+      height: 15px;
+      background: #3498db;
+      animation: rain-fall 1s linear;
+      z-index: 10;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    @keyframes rain-fall {
+      0% {
+        transform: translateY(-20px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+    #rainbow {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  z-index: 20;
+  display: none;
+  pointer-events: none;
+}
   </style>
 </head>
 <body>
@@ -81,6 +115,13 @@
   <div id="pun-box">Click a button to get a bug pun!</div>
   <button id="yes-btn">Yes 🐛</button>
   <button id="no-btn">No 🙅</button>
+
+  <!-- Rainbow image -->
+  
+
+  <!-- Audio elements -->
+  <audio id="choir-sound" src="https://cdn.pixabay.com/audio/2021/09/01/audio_3f6ad63c2e.mp3"></audio>
+  <audio id="thunder-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_3d2ba9c50f.mp3"></audio>
 
   <script>
     const puns = [
@@ -99,6 +140,9 @@
     const punBox = document.getElementById('pun-box');
     const yesBtn = document.getElementById('yes-btn');
     const noBtn = document.getElementById('no-btn');
+    const rainbow = document.getElementById('rainbow');
+    const choirSound = document.getElementById('choir-sound');
+    const thunderSound = document.getElementById('thunder-sound');
 
     function getRandomPun() {
       const pun = puns[Math.floor(Math.random() * puns.length)];
@@ -120,13 +164,38 @@
       }
     }
 
+    function spawnRain(count = 30) {
+      for (let i = 0; i < count; i++) {
+        const drop = document.createElement('div');
+        drop.classList.add('raindrop');
+        drop.style.left = Math.random() * window.innerWidth + 'px';
+        drop.style.top = '-20px';
+        drop.style.animationDuration = (0.5 + Math.random() * 1.5) + 's';
+        document.body.appendChild(drop);
+
+        setTimeout(() => {
+          drop.remove();
+        }, 2000);
+      }
+    }
+
     yesBtn.addEventListener('click', () => {
       spawnBugs();
       getRandomPun();
+      rainbow.style.display = 'block';
+      choirSound.currentTime = 0;
+      choirSound.play();
+
+      setTimeout(() => {
+        rainbow.style.display = 'none';
+      }, 5000);
     });
 
     noBtn.addEventListener('click', () => {
+      spawnRain();
       getRandomPun();
+      thunderSound.currentTime = 0;
+      thunderSound.play();
     });
 
     // Show a pun on load
