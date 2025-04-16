@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bug Pun Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f9f4;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    #pun-box {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #yes-btn {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #yes-btn:hover {
+      background-color: #45a049;
+    }
+
+    #no-btn {
+      background-color: #f44336;
+      color: white;
+    }
+
+    #no-btn:hover {
+      background-color: #d32f2f;
+    }
+
+    .bug {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5c/Ladybug_cartoon.svg');
+      background-size: cover;
+      animation: fly 5s linear;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @keyframes fly {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🐞 Bug Pun Generator 🐞</h1>
+  <div id="pun-box">Click a button to get a bug pun!</div>
+  <button id="yes-btn">Yes 🐛</button>
+  <button id="no-btn">No 🙅</button>
+
+  <script>
+    const puns = [
+      "I'm really buggin' out right now.",
+      "You're the bee's knees!",
+      "Stop bugging me!",
+      "Don't ant-agonize me.",
+      "That joke was un-bee-lievable!",
+      "I'm on a roll, just like a dung beetle!",
+      "You're fly, don't let anyone squash your vibe.",
+      "Let’s stick together like aphids on a plant.",
+      "I mite just laugh at that.",
+      "It’s a bug’s life!"
+    ];
+
+    const punBox = document.getElementById('pun-box');
+    const yesBtn = document.getElementById('yes-btn');
+    const noBtn = document.getElementById('no-btn');
+
+    function getRandomPun() {
+      const pun = puns[Math.floor(Math.random() * puns.length)];
+      punBox.textContent = pun;
+    }
+
+    function spawnBugs(count = 10) {
+      for (let i = 0; i < count; i++) {
+        const bug = document.createElement('div');
+        bug.classList.add('bug');
+        bug.style.left = Math.random() * window.innerWidth + 'px';
+        bug.style.top = window.innerHeight + 'px';
+        bug.style.animationDuration = (3 + Math.random() * 2) + 's';
+        document.body.appendChild(bug);
+
+        setTimeout(() => {
+          bug.remove();
+        }, 5000);
+      }
+    }
+
+    yesBtn.addEventListener('click', () => {
+      spawnBugs();
+      getRandomPun();
+    });
+
+    noBtn.addEventListener('click', () => {
+      getRandomPun();
+    });
+
+    // Show a pun on load
+    getRandomPun();
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+p{
+    font-weight: bold;
+    font-size: 20px;
+}
+#Top{
+    text-decoration: underline;
+
+}
+.emphasizedText{
+    font-style: italic;
+    color: rgba(213, 16, 16, 0.795)
+}
+body{
+    background-color: rgba(137, 189, 185, 0.541);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    border: 55px solid rgba(213, 16, 16, 0.795);
+    margin: 20px;
+    padding: 10px; 
+}
+.centered-list{
+    padding-left: 0;
+    list-style-position: outside;
+    margin: 0 auto;
+    display: table;
+    text-align: left;
+
+}
+.header{
+    background-color: rgb(243, 183, 32);
+    color: white;
+    height: 100px;
+    line-height: 100px; 
+}
+
+.mainbody{
+    background-color: rgba(137, 189, 185, 0.541);
+
+}
+
+.footer{
+    position: fixed;
+    background-color: rgb(243, 183, 32);
+    color: white;
+    bottom: 0px;
+    left: 5px;
+    right: 5px;
+    line-height: 25px;
+    height: 25px
+}
+
+nav{ background-color: white;
+    padding: 10px;
+}
+
+nav a{
+
+    color: #333;
+    text-decoration: none;
+    padding: 20px;
+    font-weight: bold;
+
+}
+
+nav a:hover{
+
+    background-color: whitesmoke;
+
+
+
+}
